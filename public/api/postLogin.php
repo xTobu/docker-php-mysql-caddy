@@ -1,5 +1,5 @@
 <?php
-if (! empty($_POST["login"])) {
+if (! empty($_POST["formName"]) || $_POST["formName"] != "login") {
     session_start();
 
     $user = filter_var($_POST["user"], FILTER_SANITIZE_STRING);
@@ -11,10 +11,13 @@ if (! empty($_POST["login"])) {
         header("Location: /backoffice");
     }
     else{
-        $_SESSION["errorMessage"] = "Invalid Credentials";
+        $_SESSION["errorMessage"] = "帳號或密碼錯誤";
         header("Location: /backoffice/login.php");
     }
     exit();
+}
+else{
+    header("Location: /backoffice/login.php");
 }
 
 function processLogin($user, $pwd) {

@@ -1,0 +1,80 @@
+body{
+    background-color: #f3f3f2;;
+}
+
+
+.login {
+	flex: 1;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    text-align: center;
+    margin-top: 150px;
+}
+
+.login-button {
+	width: 100%;
+}
+.login-form {
+	width: 290px;
+}
+.forgot-password {
+	margin-top: 10px;
+}
+
+.el-button--primary {
+    font-size: 16px;
+	background: #007c89;
+	border-color: #007c89;
+}
+.el-button--primary:hover,
+.el-button--primary.active,
+.el-button--primary:focus {
+	background: #009cad;
+	border-color: #009cad;
+}
+
+.login .el-input__inner {
+    font-size: 16px;
+}
+
+.login .el-input__inner:hover {
+	border-color: #007c89;
+}
+.login .el-input__prefix {
+	background: #eeedea;
+	left: 0;
+	height: calc(100% - 2px);
+	left: 1px;
+	top: 1px;
+	border-radius: 3px;
+}
+.login .el-input__prefix .el-input__icon {
+	width: 30px;
+}
+.login .el-input input {
+	padding-left: 40px;
+}
+.login .el-card {
+	padding-top: 0;
+}
+h2 {
+	font-family: "Open Sans";
+	letter-spacing: 1px;
+	font-family: Roboto, sans-serif;
+	padding-bottom: 20px;
+}
+a {
+	color: #007c89;
+	text-decoration: none;
+}
+a:hover,
+a:active,
+a:focus {
+	color: #009cad;
+}
+.login .el-card {
+	width: 340px;
+	display: flex;
+	justify-content: center;
+}
