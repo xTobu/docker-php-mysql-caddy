@@ -18,7 +18,8 @@ create table if not exists `attendee`
     `phone`      varchar(20)                        null,
     `email`      varchar(50)                        null,
     `status`     int      default 1                 null,
-    `created_at` datetime default CURRENT_TIMESTAMP null
+    `deleted_at` datetime                           null,
+    `updated_at` datetime default CURRENT_TIMESTAMP null
 );
 
 
@@ -26,5 +27,6 @@ create table if not exists `attendee`
 -- Records of attendee
 -- ----------------------------
 BEGIN;
-INSERT INTO `attendee` (`event`, `session`, `name`, `phone`, `email`) VALUES ("下午茶大會", "胡椒餅", "俊翔", "0988123456", "mail@domain.tw");
+INSERT INTO `attendee` (`event`, `session`, `name`, `phone`, `email`) VALUES ("下午茶大會", "胡椒餅", "俊翔", "0988123456", "jx@domain.tw");
+INSERT INTO `attendee` (`event`, `session`, `name`, `phone`, `email`) VALUES ("下午茶大會", "泡菜煎餅", "Shirlin", "0988123456", "lee@domain.tw");
 COMMIT;
