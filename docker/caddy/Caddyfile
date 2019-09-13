@@ -6,7 +6,7 @@
     
     on startup php-fpm --nodaemonize
 
-    rewrite /backoffice {
+    rewrite /backoffice/ {
         regexp .*
         ext /
         to /backoffice/index.php?{query}
