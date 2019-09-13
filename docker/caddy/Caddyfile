@@ -2,6 +2,13 @@
     root /var/www/html
     gzip
     fastcgi /api php:9000 php
+    fastcgi /backoffice php:9000 php
     
     on startup php-fpm --nodaemonize
+
+    rewrite /backoffice {
+        regexp .*
+        ext /
+        to /backoffice/index.php?{query}
+    }
 }
