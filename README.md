@@ -10,7 +10,10 @@ docker-compose stop <service>
 docker-compose rm <service> 
 ```
 
+---
+
 ## Api Doc
+#### [ Base URL: localhost:9000 ]
 
 ### /api/getAttendees.php
 > 取得所有參加者
