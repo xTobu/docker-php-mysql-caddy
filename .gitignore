@@ -1,5 +1,6 @@
 public/*
 !public/api
+!public/backoffice
 !public/test.html
 
 docker/mysql/data
