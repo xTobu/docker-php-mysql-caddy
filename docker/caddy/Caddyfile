@@ -1,0 +1,7 @@
+:80 {
+    root /var/www/html
+    gzip
+    fastcgi /api php:9000 php
+    
+    on startup php-fpm --nodaemonize
+}

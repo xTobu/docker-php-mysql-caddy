@@ -1,0 +1,36 @@
+version: '3'
+services:
+    caddy:
+        container_name: gvm_caddy
+        build: ./docker/caddy
+        ports:
+            - "9000:80"
+        volumes:
+            - "$PWD/public:/var/www/html"        
+        links:
+            - php
+        depends_on:
+            - php
+
+    php:
+        container_name: gvm_php
+        build: ./docker/php
+        volumes:
+            - "$PWD/public:/var/www/html"
+        links:
+            - mysql:mysql
+    
+    mysql:
+        container_name: gvm_mysql
+        build: ./docker/mysql
+        ports:
+        - "3300:3306"
+        volumes:
+        - ./docker/mysql/data:/var/lib/mysql
+        - ./docker/mysql/initdb.d:/docker-entrypoint-initdb.d
+        - ./docker/mysql/my.cnf:/etc/my.cnf
+        environment:
+            MYSQL_ROOT_PASSWORD: 1234
+            MYSQL_DATABASE: db_Event
+            restart: always
+
