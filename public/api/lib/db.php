@@ -6,12 +6,13 @@ class DB
 
     public function Connect()
     {
-        $dbType   = "mysql";
-        $host     = "mysql";
-        $port     = "3306";
-        $dbName   = "db_Event";
-        $user     = "root";
-        $pwd      = "1234";
+        $config = include('config.php');
+        $dbType   = $config["db"]["dbType"];
+        $host     = $config["db"]["host"];
+        $port     = $config["db"]["port"];
+        $dbName   = $config["db"]["dbName"];
+        $user     = $config["db"]["user"];
+        $pwd      = $config["db"]["pwd"];
         $dsn      = "$dbType:host=$host;port=$port;dbname=$dbName";
 
         try {
