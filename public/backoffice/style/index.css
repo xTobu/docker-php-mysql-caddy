@@ -1,0 +1,15 @@
+body {
+	background-color: #f3f3f2;
+}
+
+.el-header {
+	padding: 20px 20px;
+}
+
+.el-card__body {
+	text-align: center;
+}
+
+.el-pagination {
+	margin-top: 20px;
+}
