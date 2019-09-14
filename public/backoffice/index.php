@@ -38,16 +38,16 @@ if (!empty($_SESSION["su"])) {
                     <el-col :span="2">
                         <el-avatar shape="square"> GVM </el-avatar>
                     </el-col>
+                    <el-col :span="10" style="">
+                        <el-button type="danger" icon="fas fa-sign-out-alt" circle @click.prevent="logout"></el-button>
+                        <el-button type="success" icon="el-icon-download" circle></el-button>
+                    </el-col>
                     <el-col :span="12">
                         <el-input
                             placeholder="全文檢索"
                             prefix-icon="el-icon-search"
                             >
                         </el-input>
-                    </el-col>
-                    <el-col :span="10" style="text-align: right;">
-                        <el-button type="success" icon="el-icon-download" circle></el-button>
-                        <el-button type="danger" icon="fas fa-sign-out-alt" circle @click.prevent="logout"></el-button>
                     </el-col>
                 </el-row>
 

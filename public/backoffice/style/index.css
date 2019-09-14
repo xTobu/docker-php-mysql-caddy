@@ -2,6 +2,11 @@ body {
 	background-color: #f3f3f2;
 }
 
+section.el-container{
+    max-width: 900px;
+    margin: 0 auto;
+}
+
 .el-header {
 	padding: 20px 20px;
 }
