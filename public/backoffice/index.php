@@ -19,6 +19,8 @@ if (!empty($_SESSION["su"])) {
       integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr"
       crossorigin="anonymous"
     />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bluebird/3.5.5/bluebird.js"></script>
+
     <!-- import Vue before Element -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
 
@@ -35,7 +37,7 @@ if (!empty($_SESSION["su"])) {
             <el-header>
                 <!-- <?php echo $su; ?> -->
                 <el-row :gutter="20">
-                    <el-col :span="2">
+                    <el-col :span="1.5">
                         <el-avatar shape="square"> GVM </el-avatar>
                     </el-col>
                     <el-col :span="10" style="">
@@ -45,6 +47,7 @@ if (!empty($_SESSION["su"])) {
                     <el-col :span="12">
                         <el-input
                             placeholder="全文檢索"
+                            v-model="strSearch"
                             prefix-icon="el-icon-search"
                             >
                         </el-input>
@@ -55,22 +58,40 @@ if (!empty($_SESSION["su"])) {
             <el-main>
                 <el-card class="box-card">
                     <el-table
-                        :data="tableData"
+                        empty-text="無資料"
+                        :data="computedTableData.slice((pageCurrent - 1 ) * pageSize, pageCurrent * pageSize)"
                         style="width: 100%">
                         <el-table-column
                             sortable
-                            prop="date"
-                            label="日期"
-                            width="180">
+                            prop="created_at"
+                            label="報名時間"
+                            width="200">
                         </el-table-column>
+                        <el-table-column                            
+                            prop="event"
+                            label="活動名稱"
+                            width="120">
+                        </el-table-column>
+                        <el-table-column
+                            sortable
+                            prop="session"
+                            label="場次"
+                            width="100">
+                        </el-table-column>
+                       
                         <el-table-column
                             prop="name"
                             label="姓名"
-                            width="180">
+                            width="100">
                         </el-table-column>
                         <el-table-column
-                            prop="address"
-                            label="地址">
+                            prop="phone"
+                            label="電話"
+                            width="120">
+                        </el-table-column>
+                        <el-table-column
+                            prop="email"
+                            label="信箱">
                         </el-table-column>
                     </el-table>
                     <el-pagination
@@ -79,7 +100,7 @@ if (!empty($_SESSION["su"])) {
                         background
                         layout="prev, pager, next"
                         :page-size="pageSize"
-                        :total="pageTotalCount">
+                        :total="computedTableData.length">
                     </el-pagination>
                 </el-card>
             </el-main>

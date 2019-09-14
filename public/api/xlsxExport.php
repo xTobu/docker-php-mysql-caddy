@@ -48,7 +48,7 @@ try {
 
     if ($conn) {
 
-        $query = "SELECT * FROM `attendee` WHERE `status` = 1 ORDER BY `created_at` ASC";
+        $query = "SELECT * FROM `attendee` WHERE `status` = 1 ORDER BY `pkid` ASC";
         $statement = $conn->prepare($query);
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
