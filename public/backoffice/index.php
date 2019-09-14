@@ -72,10 +72,12 @@ if (!empty($_SESSION["su"])) {
                         </el-table-column>
                     </el-table>
                     <el-pagination
+                        :hide-on-single-page="true"
+                        :current-page.sync="pageCurrent"
                         background
                         layout="prev, pager, next"
-                        :page-size="10"
-                        :total="100">
+                        :page-size="pageSize"
+                        :total="pageTotalCount">
                     </el-pagination>
                 </el-card>
             </el-main>

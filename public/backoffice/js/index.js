@@ -4,6 +4,9 @@ var Index = {
 		Index.instanceVue = new Vue({
 			el: '#app',
 			data: {
+				pageCurrent: 1,
+				pageSize: 10,
+				pageTotalCount: 100,
 				tableData: [
 					{
 						date: '2016-05-03',
@@ -39,13 +42,12 @@ var Index = {
 						date: '2016-05-07',
 						name: '王小虎',
 						address: '上海市普陀区金沙江路 1518 弄',
-					}
+					},
 				],
 			},
 
 			created: function() {},
-			mounted: function() {
-			},
+			mounted: function() {},
 			methods: {
 				logout: function() {
 					window.location = '/api/postLogout.php';
