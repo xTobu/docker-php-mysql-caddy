@@ -1,6 +1,7 @@
 var Index = {
 	instanceVue: undefined,
 	Setup: function() {
+		ELEMENT.locale(ELEMENT.lang.en);
 		Index.instanceVue = new Vue({
 			el: '#app',
 			data: {
@@ -69,6 +70,9 @@ var Index = {
 						.catch(function(err) {
 							console.log(err);
 						});
+				},
+				handleSizeChange: function(val) {
+					Index.instanceVue.pageSize = val;
 				},
 			},
 		});

@@ -23,11 +23,13 @@ if (!empty($_SESSION["su"])) {
 
     <!-- import Vue before Element -->
     <script src="https://unpkg.com/vue/dist/vue.js"></script>
+    <script src="https://unpkg.com/vue-i18n/dist/vue-i18n.js"></script>
 
     <!-- import Element -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
+    <script src="https://unpkg.com/element-ui/lib/umd/locale/en.js"></script>
     <link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet" >
-    
+
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="./style/index.css" rel="stylesheet" type="text/css" />
 </head>
@@ -67,7 +69,7 @@ if (!empty($_SESSION["su"])) {
                             label="報名時間"
                             width="200">
                         </el-table-column>
-                        <el-table-column                            
+                        <el-table-column
                             prop="event"
                             label="活動名稱"
                             width="120">
@@ -78,7 +80,7 @@ if (!empty($_SESSION["su"])) {
                             label="場次"
                             width="100">
                         </el-table-column>
-                       
+
                         <el-table-column
                             prop="name"
                             label="姓名"
@@ -95,11 +97,12 @@ if (!empty($_SESSION["su"])) {
                         </el-table-column>
                     </el-table>
                     <el-pagination
-                        :hide-on-single-page="true"
                         :current-page.sync="pageCurrent"
                         background
-                        layout="prev, pager, next"
+                        layout="sizes, prev, pager, next"
+                        @size-change="handleSizeChange"
                         :page-size="pageSize"
+                        :page-sizes="[10, 30, 100, 300]"
                         :total="computedTableData.length">
                     </el-pagination>
                 </el-card>
