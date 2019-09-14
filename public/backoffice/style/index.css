@@ -6,7 +6,9 @@ section.el-container{
     max-width: 960px;
     margin: 0 auto;
 }
-
+.el-col-12 {
+	width: 51.9%;
+}
 .el-header {
 	padding: 20px 20px;
 }
