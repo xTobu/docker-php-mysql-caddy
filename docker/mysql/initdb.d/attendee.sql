@@ -19,7 +19,8 @@ create table if not exists `attendee`
     `email`      varchar(50)                        null,
     `status`     int      default 1                 null,
     `deleted_at` datetime                           null,
-    `updated_at` datetime default CURRENT_TIMESTAMP null
+    `updated_at` datetime    on update current_timestamp,
+    `created_at` datetime      default current_timestamp
 );
 
 

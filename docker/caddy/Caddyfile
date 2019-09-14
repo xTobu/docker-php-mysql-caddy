@@ -11,4 +11,9 @@
         ext /
         to /backoffice/index.php?{query}
     }
+
+    rewrite /api/lib/config.php {
+        regexp .*
+	    to 403 /forbidden
+    }
 }

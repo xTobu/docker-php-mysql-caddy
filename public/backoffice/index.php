@@ -25,6 +25,8 @@ if (!empty($_SESSION["su"])) {
     <!-- import Element -->
     <script src="https://unpkg.com/element-ui/lib/index.js"></script>
     <link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet" >
+    
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
     <link href="./style/index.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
