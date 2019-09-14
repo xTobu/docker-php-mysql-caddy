@@ -40,7 +40,7 @@ if (!empty($_SESSION["su"])) {
                     </el-col>
                     <el-col :span="10" style="">
                         <el-button type="danger" icon="fas fa-sign-out-alt" circle @click.prevent="logout"></el-button>
-                        <el-button type="success" icon="el-icon-download" circle></el-button>
+                        <el-button type="success" icon="el-icon-download" circle @click.prevent="download"></el-button>
                     </el-col>
                     <el-col :span="12">
                         <el-input

@@ -52,6 +52,9 @@ var Index = {
 				logout: function() {
 					window.location = '/api/postLogout.php';
 				},
+				download: function() {
+					window.location = '/api/xlsxExport.php';
+				},
 			},
 		});
 	},

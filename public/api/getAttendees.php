@@ -8,13 +8,11 @@ try{
 
     if($conn){
 
-        $query = "SELECT * FROM `attendee`";
+        $query = "SELECT * FROM `attendee` WHERE `status` = 1 ORDER BY `created_at` ASC";
         $statement = $conn->prepare($query);
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
         
-        // $json = json_encode($results);
-
         $handler = new handler();
         $handler->response(200, $results);
     }
