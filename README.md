@@ -46,10 +46,10 @@ docker-compose rm <service>
 ##### FormData
 ```js
 {
-    "event": "下午茶大會"
-    "session": "牛肚包場次"
-    "name": "Freddy"
-    "phone": "0900000000"
+    "event": "下午茶大會",
+    "session": "牛肚包場次",
+    "name": "Freddy",
+    "phone": "0900000000",
     "email": "pan@domain.tw"
 }
 ```
