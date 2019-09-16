@@ -19,6 +19,8 @@ services:
             - "./public:/var/www/html"
         links:
             - mysql:mysql
+        environment:
+            - DEPLOY=dev
     
     mysql:
         container_name: gvm_mysql

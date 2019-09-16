@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ERROR | E_PARSE);
 include './lib/db.php';
 
 //載入PHPExcel類
@@ -72,15 +73,20 @@ try {
     exit();
 }
 
+try {
+    header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+    header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xlsx"');
+    // header('Content-Type: application/vnd.ms-excel');
+    // header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xls"');
+    header('Cache-Control: max-age=0');
 
-header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xlsx"');
-// header('Content-Type: application/vnd.ms-excel');
-// header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xls"');
-header('Cache-Control: max-age=0');
+    $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+    // $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+    ob_end_clean();
 
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
-ob_end_clean();
+    $objWriter->save('php://output');
 
-$objWriter->save('php://output');
+} catch (PDOException $ex) {
+    echo $ex->getMessage();
+    exit();
+}
