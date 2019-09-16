@@ -6,7 +6,7 @@ services:
         ports:
             - "9000:80"
         volumes:
-            - "$PWD/public:/var/www/html"        
+            - "./public:/var/www/html"        
         links:
             - php
         depends_on:
@@ -16,7 +16,7 @@ services:
         container_name: gvm_php
         build: ./docker/php
         volumes:
-            - "$PWD/public:/var/www/html"
+            - "./public:/var/www/html"
         links:
             - mysql:mysql
     
