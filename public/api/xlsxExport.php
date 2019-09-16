@@ -73,14 +73,14 @@ try {
 }
 
 
-// header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-// header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xlsx"');
-header('Content-Type: application/vnd.ms-excel');
-header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xls"');
+header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xlsx"');
+// header('Content-Type: application/vnd.ms-excel');
+// header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xls"');
 header('Cache-Control: max-age=0');
 
-// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
-$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
+$objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel2007');
+// $objWriter = PHPExcel_IOFactory::createWriter($objPHPExcel, 'Excel5');
 ob_end_clean();
 
 $objWriter->save('php://output');

@@ -1,5 +1,10 @@
 FROM php:7.2-fpm
 
+RUN apt-get update && \
+     apt-get install -y \
+         libzip-dev \
+         && docker-php-ext-install zip
+         
 # Install application dependencies
 RUN curl --silent --show-error --fail --location \
       --header "Accept: application/tar+gzip, application/x-gzip, application/octet-stream" -o - \
