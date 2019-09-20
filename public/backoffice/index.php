@@ -80,7 +80,21 @@ if (!empty($_SESSION["su"])) {
                             label="場次"
                             width="100">
                         </el-table-column>
-
+                        <el-table-column
+                            prop="job"
+                            label="職稱"
+                            width="120">
+                        </el-table-column>
+                        <el-table-column
+                            prop="dept"
+                            label="所屬單位"
+                            width="120">
+                        </el-table-column>
+                        <el-table-column
+                            prop="rocid"
+                            label="身分證字號"
+                            width="120">
+                        </el-table-column>
                         <el-table-column
                             prop="name"
                             label="姓名"

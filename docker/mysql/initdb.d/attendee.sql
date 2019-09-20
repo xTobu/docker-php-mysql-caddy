@@ -14,6 +14,9 @@ create table if not exists `attendee`
         primary key,
     `event`      varchar(50)                        null,
     `session`    varchar(20)                        null,
+    `job`        varchar(20)                        null,
+    `dept`       varchar(20)                        null,
+    `rocid`      varchar(20)                        null,
     `name`       varchar(20)                        null,
     `phone`      varchar(20)                        null,
     `email`      varchar(50)                        null,
@@ -28,6 +31,6 @@ create table if not exists `attendee`
 -- Records of attendee
 -- ----------------------------
 BEGIN;
-INSERT INTO `attendee` (`event`, `session`, `name`, `phone`, `email`) VALUES ("下午茶大會", "胡椒餅", "俊翔", "0988123456", "jx@domain.tw");
-INSERT INTO `attendee` (`event`, `session`, `name`, `phone`, `email`) VALUES ("下午茶大會", "泡菜煎餅", "Shirlin", "0988123456", "lee@domain.tw");
+INSERT INTO `attendee` (`event`, `session`, `job`, `dept`, `rocid`, `name`, `phone`, `email`) VALUES ("下午茶大會", "胡椒餅", "職稱", "所屬單位", "A123456789", "俊翔", "0988123456", "jx@domain.tw");
+INSERT INTO `attendee` (`event`, `session`, `job`, `dept`, `rocid`, `name`, `phone`, `email`) VALUES ("下午茶大會", "泡菜煎餅", "職稱", "所屬單位", "A123456789", "Shirlin", "0988123456", "lee@domain.tw");
 COMMIT;
