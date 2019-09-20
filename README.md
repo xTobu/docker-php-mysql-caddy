@@ -28,6 +28,9 @@ docker-compose rm <service>
             "pkid": 1,
             "event": "下午茶大會",
             "session": "胡椒餅",
+            "job": "職稱",
+            "dept": "所屬單位",
+            "rocid": "A123456789",
             "name": "俊翔",
             "phone": "0988123456",
             "email": "jx@domain.tw",
@@ -48,6 +51,9 @@ docker-compose rm <service>
 {
     "event": "下午茶大會",
     "session": "牛肚包場次",
+    "job": "職稱",
+    "dept": "所屬單位",
+    "rocid": "A123456789" || null,
     "name": "Freddy",
     "phone": "0900000000",
     "email": "pan@domain.tw"
