@@ -1,4 +1,10 @@
 <?php
+session_start();
+if (empty($_SESSION["su"])) {
+    http_response_code(401);
+    exit();
+}
+
 error_reporting(E_ERROR | E_PARSE);
 include './lib/db.php';
 
@@ -27,8 +33,6 @@ $objPHPExcel->getActiveSheet()->SetCellValue('F1', '身分證字號');
 $objPHPExcel->getActiveSheet()->SetCellValue('G1', '姓名');
 $objPHPExcel->getActiveSheet()->SetCellValue('H1', '電話');
 $objPHPExcel->getActiveSheet()->SetCellValue('I1', '信箱');
-
-
 
 foreach (array('A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I') as $columnID) {
 

@@ -1,8 +1,6 @@
 <?php
 session_start();
-if (!empty($_SESSION["su"])) {
-    $su = $_SESSION["su"];
-} else {
+if (empty($_SESSION["su"])) {
     header("Location: /backoffice/login.php");
 }
 ?>
@@ -37,7 +35,6 @@ if (!empty($_SESSION["su"])) {
     <div id="app" style="display: none;" v-show="true">
         <el-container>
             <el-header>
-                <!-- <?php echo $su; ?> -->
                 <el-row :gutter="20">
                     <el-col :span="1.5">
                         <el-avatar shape="square"> GVM </el-avatar>
