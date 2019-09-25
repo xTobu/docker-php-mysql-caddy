@@ -12,8 +12,8 @@ var Index = {
 				tableData: [
 					// {
 					// 	pkid: 1,
-					// 	event: '下午茶大會',
-					// 	session: '胡椒餅',
+					// 	event: 'Event',
+					// 	session: '台中場',
 					// 	job: '職稱',
 					// 	dept: '所屬單位',
 					// 	rocid: 'A123456789',
@@ -61,8 +61,8 @@ var Index = {
 				logout: function() {
 					window.location = '/api/postLogout.php';
 				},
-				download: function() {
-					window.location = '/api/xlsxExport.php';
+				handleDownload: function(session) {
+					window.location = '/api/xlsxExport.php?session=' + session;
 				},
 				getTableDate: function() {
 					axios

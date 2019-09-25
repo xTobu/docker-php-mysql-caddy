@@ -1,4 +1,9 @@
 <?php
+if (empty($_GET["session"])) {
+    http_response_code(404);
+    exit();
+}
+
 session_start();
 if (empty($_SESSION["su"])) {
     http_response_code(401);
@@ -51,8 +56,9 @@ try {
 
     if ($conn) {
 
-        $query = "SELECT `pkid`, `event`, `session`, `job`, `dept`, `rocid`, `name`, `phone`, `email`, `status`, CONVERT_TZ(`created_at`,'+00:00','+08:00') as `created_at` FROM `attendee` WHERE `status` = 1 ORDER BY `pkid` ASC";
+        $query = "SELECT `pkid`, `event`, `session`, `job`, `dept`, `rocid`, `name`, `phone`, `email`, `status`, CONVERT_TZ(`created_at`,'+00:00','+08:00') as `created_at` FROM `attendee` WHERE `status` = 1 AND `session` = :session ORDER BY `pkid` ASC";
         $statement = $conn->prepare($query);
+        $statement->bindParam(':session', $_GET["session"]);
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
 
@@ -80,7 +86,7 @@ try {
 
 try {
     header('Content-Type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
-    header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xlsx"');
+    header('Content-Disposition: attachment;filename="GVM-Event-報名名單_'.$_GET["session"].'.xlsx"');
     // header('Content-Type: application/vnd.ms-excel');
     // header('Content-Disposition: attachment;filename="GVM_Event_報名名單.xls"');
     header('Cache-Control: max-age=0');

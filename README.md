@@ -26,8 +26,8 @@ docker-compose rm <service>
     "data": [
         {
             "pkid": 1,
-            "event": "下午茶大會",
-            "session": "胡椒餅",
+            "event": "Event",
+            "session": "台中場",
             "job": "職稱",
             "dept": "所屬單位",
             "rocid": "A123456789",
@@ -49,8 +49,8 @@ docker-compose rm <service>
 ##### FormData
 ```js
 {
-    "event": "下午茶大會",
-    "session": "牛肚包場次",
+    "event": "Event",
+    "session": "台中場",
     "job": "職稱",
     "dept": "所屬單位",
     "rocid": "A123456789" || null,

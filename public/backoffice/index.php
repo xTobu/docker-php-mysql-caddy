@@ -1,7 +1,7 @@
 <?php
 session_start();
-if (empty($_SESSION["su"])) {
-    header("Location: /backoffice/login.php");
+if (empty($_SESSION["su"])) {{
+}header("Location: /backoffice/login.php");
 }
 ?>
 
@@ -41,7 +41,14 @@ if (empty($_SESSION["su"])) {
                     </el-col>
                     <el-col :span="10" style="">
                         <el-button type="danger" icon="fas fa-sign-out-alt" circle @click.prevent="logout"></el-button>
-                        <el-button type="success" icon="el-icon-download" circle @click.prevent="download"></el-button>
+                        <el-dropdown trigger="click" @command="handleDownload">
+                            <el-button type="success" icon="el-icon-download" circle ></el-button>
+                            <el-dropdown-menu slot="dropdown">
+                                <el-dropdown-item command="台中場">台中場</el-dropdown-item>
+                                <el-dropdown-item command="彰化場">彰化場</el-dropdown-item>
+                            </el-dropdown-menu>
+                        </el-dropdown>
+
                     </el-col>
                     <el-col :span="12">
                         <el-input
@@ -122,5 +129,5 @@ if (empty($_SESSION["su"])) {
 
     </div>
 </body>
-<script src="./js/index.js"></script>
+<script src="./js/index.js?<?php echo rand(0,1000);?>"></script>
 </html>
