@@ -9,6 +9,7 @@ var Index = {
 				pageSize: 10,
 				pageTotalCount: 100,
 				strSearch: '',
+				selectedSession: '全部',
 				tableData: [
 					// {
 					// 	pkid: 1,
@@ -29,7 +30,19 @@ var Index = {
 			},
 			computed: {
 				computedTableData: function() {
-					var data = this.tableData;
+					var _s = this.selectedSession;
+					var data = this.tableData.filter(function(item, index, array) {
+						if (_s === '全部') {
+							return true;
+						} else {
+							return _s == item.session;
+						}
+					});
+
+					data.forEach(function(item, index, array) {
+						item.index = index + 1;
+					});
+
 					if (data.length !== 0 && this.strSearch) {
 						var results = [];
 						for (var i = 0; i < data.length; i++) {
@@ -62,7 +75,8 @@ var Index = {
 					window.location = '/api/postLogout.php';
 				},
 				handleDownload: function(session) {
-					window.location = '/api/xlsxExport.php?session=' + session;
+					window.location =
+						'/api/xlsxExport.php?session=' + Index.instanceVue.selectedSession;
 				},
 				getTableDate: function() {
 					axios

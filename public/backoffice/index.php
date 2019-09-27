@@ -29,7 +29,7 @@ if (empty($_SESSION["su"])) {{
     <link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet" >
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link href="./style/index.css" rel="stylesheet" type="text/css" />
+    <link href="./style/index.css?<?php echo rand(0,1000);?>" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="app" style="display: none;" v-show="true">
@@ -41,13 +41,14 @@ if (empty($_SESSION["su"])) {{
                     </el-col>
                     <el-col :span="10" style="">
                         <el-button type="danger" icon="fas fa-sign-out-alt" circle @click.prevent="logout"></el-button>
-                        <el-dropdown trigger="click" @command="handleDownload">
+                        <el-button type="success" icon="el-icon-download" circle @click.prevent="handleDownload"></el-button>
+                        <!-- <el-dropdown trigger="click" @command="handleDownload">
                             <el-button type="success" icon="el-icon-download" circle ></el-button>
                             <el-dropdown-menu slot="dropdown">
                                 <el-dropdown-item command="台中場">台中場</el-dropdown-item>
                                 <el-dropdown-item command="彰化場">彰化場</el-dropdown-item>
                             </el-dropdown-menu>
-                        </el-dropdown>
+                        </el-dropdown> -->
 
                     </el-col>
                     <el-col :span="12">
@@ -62,11 +63,25 @@ if (empty($_SESSION["su"])) {{
 
             </el-header>
             <el-main>
+            
+            <el-radio-group v-model="selectedSession" style="margin-bottom: 20px">
+                        <el-radio-button label="全部"></el-radio-button>
+                        <el-radio-button label="台中場"></el-radio-button>
+                        <el-radio-button label="彰化場"></el-radio-button>
+                    </el-radio-group>
+
                 <el-card class="box-card">
+                    
+                <el-tag effect="plain" style="font-size: 16px;">{{computedTableData.length}} records</el-tag>
                     <el-table
                         empty-text="無資料"
                         :data="computedTableData.slice((pageCurrent - 1 ) * pageSize, pageCurrent * pageSize)"
                         style="width: 100%">
+                        <el-table-column
+                            label=""
+                            prop="index"
+                            width="50">
+                        </el-table-column>
                         <el-table-column
                             sortable
                             prop="created_at"
@@ -79,7 +94,6 @@ if (empty($_SESSION["su"])) {{
                             width="120">
                         </el-table-column>
                         <el-table-column
-                            sortable
                             prop="session"
                             label="場次"
                             width="100">
