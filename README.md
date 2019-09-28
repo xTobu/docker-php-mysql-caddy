@@ -71,7 +71,14 @@ docker-compose rm <service>
 ```js
 {
     "status": 400,
-    "data": "Incomplete Request"
+    "data": "Bad Request: Incomplete Request"
+}
+```
+##### 409 重複資料
+```js
+{
+    "status": 409,
+    "data": "Conflict: Duplicate Data"
 }
 ```
 ##### 500 伺服器錯誤
