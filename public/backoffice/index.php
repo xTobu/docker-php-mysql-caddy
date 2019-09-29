@@ -54,7 +54,8 @@ if (empty($_SESSION["su"])) {{
                     <el-col :span="12">
                         <el-input
                             placeholder="全文檢索"
-                            v-model="strSearch"
+                            v-bind:value="strSearch"
+                            @input="updateSearch"
                             prefix-icon="el-icon-search"
                             >
                         </el-input>

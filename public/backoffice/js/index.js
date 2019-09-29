@@ -26,7 +26,7 @@ var Index = {
 					// 	updated_at: null,
 					// 	created_at: '2019-09-14 00:50:54',
 					// },
-				],
+				]
 			},
 			computed: {
 				computedTableData: function() {
@@ -42,29 +42,31 @@ var Index = {
 					data.forEach(function(item, index, array) {
 						item.index = index + 1;
 					});
-
 					if (data.length !== 0 && this.strSearch) {
 						var results = [];
 						for (var i = 0; i < data.length; i++) {
-							for (key in data[i]) {
+							var str = '';
+							Object.keys(data[i]).forEach(function(item, index, array) {
 								if (
-									key === 'pkid' ||
-									key === 'status' ||
-									key === 'deleted_at' ||
-									key === 'updated_at'
+									item === 'index' ||
+									item === 'pkid' ||
+									item === 'status' ||
+									item === 'deleted_at' ||
+									item === 'updated_at'
 								) {
-									continue;
+									return;
 								}
-								if (data[i][key].toString().includes(this.strSearch)) {
-									results.push(data[i]);
-								}
+								str += data[i][item].toString();
+							});
+							if (str.toUpperCase().includes(this.strSearch.toUpperCase())) {
+								results.push(data[i]);
 							}
 						}
 						return results;
 					} else {
 						return data;
 					}
-				},
+				}
 			},
 			created: function() {},
 			mounted: function() {
@@ -75,8 +77,7 @@ var Index = {
 					window.location = '/api/postLogout.php';
 				},
 				handleDownload: function(session) {
-					window.location =
-						'/api/xlsxExport.php?session=' + Index.instanceVue.selectedSession;
+					window.location = '/api/xlsxExport.php?session=' + Index.instanceVue.selectedSession;
 				},
 				getTableDate: function() {
 					axios
@@ -91,9 +92,12 @@ var Index = {
 				handleSizeChange: function(val) {
 					Index.instanceVue.pageSize = val;
 				},
-			},
+				updateSearch: function(value) {
+					this.strSearch = value;
+				}
+			}
 		});
-	},
+	}
 };
 
 window.onload = function() {
