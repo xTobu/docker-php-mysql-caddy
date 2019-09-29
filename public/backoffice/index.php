@@ -52,25 +52,37 @@ if (empty($_SESSION["su"])) {{
 
                     </el-col>
                     <el-col :span="12">
-                        <el-input
-                            placeholder="全文檢索"
-                            v-bind:value="strSearch"
-                            @input="updateSearch"
-                            prefix-icon="el-icon-search"
-                            >
-                        </el-input>
+                        
                     </el-col>
                 </el-row>
 
             </el-header>
             
-            <el-main>                
-                <el-radio-group v-model="selectedSession" style="margin-bottom: 20px">
-                    <el-radio-button label="全部"></el-radio-button>
-                    <el-radio-button label="台中場"></el-radio-button>
-                    <el-radio-button label="彰化場"></el-radio-button>
-                </el-radio-group>
-                
+            <el-main>        
+                <el-row :gutter="20">
+                    <el-col :span="8">
+                        <el-radio-group v-model="selectedSession" style="margin-bottom: 20px">
+                            <el-radio-button label="全部"></el-radio-button>
+                            <el-radio-button label="台中場"></el-radio-button>
+                            <el-radio-button label="彰化場"></el-radio-button>
+                        </el-radio-group>    
+                    </el-col>
+                    <el-col :span="16">
+                        <div class="el-input el-input--prefix">
+                            <input 
+                                type="text" 
+                                v-model="strSearch"
+                                autocomplete="off" 
+                                placeholder="全文檢索" 
+                                class="el-input__inner" >
+                            <span class="el-input__prefix">
+                                <i class="el-input__icon el-icon-search">
+                                </i>
+                            </span>
+                        </div>
+                    </el-col>
+                </el-row>     
+
                 <el-card class="box-card">
                     <el-tag effect="plain" style="font-size: 16px;">
                         {{computedTableData.length}} records
