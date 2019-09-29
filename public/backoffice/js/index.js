@@ -38,10 +38,6 @@ var Index = {
 							return _s == item.session;
 						}
 					});
-
-					data.forEach(function(item, index, array) {
-						item.index = index + 1;
-					});
 					if (data.length !== 0 && this.strSearch) {
 						var results = [];
 						for (var i = 0; i < data.length; i++) {
@@ -49,6 +45,7 @@ var Index = {
 							Object.keys(data[i]).forEach(function(item, index, array) {
 								if (
 									item === 'index' ||
+									item === 'event' ||
 									item === 'pkid' ||
 									item === 'status' ||
 									item === 'deleted_at' ||
@@ -83,6 +80,9 @@ var Index = {
 					axios
 						.get('/api/getAttendees.php')
 						.then(function(res) {
+							res.data.data.forEach(function(item, index, array) {
+								item.index = index + 1;
+							});
 							Index.instanceVue.tableData = res.data.data;
 						})
 						.catch(function(err) {

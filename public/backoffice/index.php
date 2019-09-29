@@ -63,17 +63,18 @@ if (empty($_SESSION["su"])) {{
                 </el-row>
 
             </el-header>
-            <el-main>
             
-            <el-radio-group v-model="selectedSession" style="margin-bottom: 20px">
-                        <el-radio-button label="全部"></el-radio-button>
-                        <el-radio-button label="台中場"></el-radio-button>
-                        <el-radio-button label="彰化場"></el-radio-button>
-                    </el-radio-group>
-
+            <el-main>                
+                <el-radio-group v-model="selectedSession" style="margin-bottom: 20px">
+                    <el-radio-button label="全部"></el-radio-button>
+                    <el-radio-button label="台中場"></el-radio-button>
+                    <el-radio-button label="彰化場"></el-radio-button>
+                </el-radio-group>
+                
                 <el-card class="box-card">
-                    
-                <el-tag effect="plain" style="font-size: 16px;">{{computedTableData.length}} records</el-tag>
+                    <el-tag effect="plain" style="font-size: 16px;">
+                        {{computedTableData.length}} records
+                    </el-tag>
                     <el-table
                         empty-text="無資料"
                         :data="computedTableData.slice((pageCurrent - 1 ) * pageSize, pageCurrent * pageSize)"
@@ -84,14 +85,33 @@ if (empty($_SESSION["su"])) {{
                             width="50">
                         </el-table-column>
                         <el-table-column
-                            sortable
-                            prop="created_at"
-                            label="報名時間"
+                            prop="name"
+                            label="姓名"
+                            width="100">
+                        </el-table-column>
+                        <el-table-column
+                            prop="rocid"
+                            label="身分證字號"
+                            width="120">
+                        </el-table-column>
+                        <el-table-column
+                            prop="phone"
+                            label="手機"
+                            width="120">
+                        </el-table-column>
+                        <el-table-column
+                            prop="email"
+                            label="信箱"
                             width="200">
                         </el-table-column>
                         <el-table-column
-                            prop="event"
-                            label="活動名稱"
+                            prop="dept"
+                            label="所屬單位"
+                            width="120">
+                        </el-table-column>
+                        <el-table-column
+                            prop="job"
+                            label="職稱"
                             width="120">
                         </el-table-column>
                         <el-table-column
@@ -100,34 +120,10 @@ if (empty($_SESSION["su"])) {{
                             width="100">
                         </el-table-column>
                         <el-table-column
-                            prop="job"
-                            label="職稱"
-                            width="120">
+                            prop="created_at"
+                            label="報名時間">
                         </el-table-column>
-                        <el-table-column
-                            prop="dept"
-                            label="所屬單位"
-                            width="120">
-                        </el-table-column>
-                        <el-table-column
-                            prop="rocid"
-                            label="身分證字號"
-                            width="120">
-                        </el-table-column>
-                        <el-table-column
-                            prop="name"
-                            label="姓名"
-                            width="100">
-                        </el-table-column>
-                        <el-table-column
-                            prop="phone"
-                            label="電話"
-                            width="120">
-                        </el-table-column>
-                        <el-table-column
-                            prop="email"
-                            label="信箱">
-                        </el-table-column>
+                        
                     </el-table>
                     <el-pagination
                         :current-page.sync="pageCurrent"
