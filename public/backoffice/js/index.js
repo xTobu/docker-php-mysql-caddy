@@ -81,7 +81,7 @@ var Index = {
 						.get('/api/getAttendees.php')
 						.then(function(res) {
 							res.data.data.forEach(function(item, index, array) {
-								item.index = index + 1;
+								item.index = res.data.data.length - index;
 							});
 							Index.instanceVue.tableData = res.data.data;
 						})
