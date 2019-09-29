@@ -60,14 +60,14 @@ if (empty($_SESSION["su"])) {{
             
             <el-main>        
                 <el-row :gutter="20">
-                    <el-col xs="12" :sm="8">
+                    <el-col :xs="24" :sm="8">
                         <el-radio-group v-model="selectedSession" style="margin-bottom: 20px">
                             <el-radio-button label="全部"></el-radio-button>
                             <el-radio-button label="台中場"></el-radio-button>
                             <el-radio-button label="彰化場"></el-radio-button>
                         </el-radio-group>    
                     </el-col>
-                    <el-col xs="12" :sm="16">
+                    <el-col :xs="24" :sm="16">
                         <div class="el-input el-input--prefix" style="margin-bottom: 20px">
                             <input 
                                 type="text" 
@@ -75,6 +75,7 @@ if (empty($_SESSION["su"])) {{
                                 autocomplete="off" 
                                 placeholder="全文檢索" 
                                 class="el-input__inner" >
+                               
                             <span class="el-input__prefix">
                                 <i class="el-input__icon el-icon-search">
                                 </i>

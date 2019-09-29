@@ -53,7 +53,7 @@ var Index = {
 								) {
 									return;
 								}
-								str += data[i][item].toString();
+								str += data[i][item];
 							});
 							if (str.toUpperCase().includes(this.strSearch.toUpperCase())) {
 								results.push(data[i]);
