@@ -60,15 +60,15 @@ if (empty($_SESSION["su"])) {{
             
             <el-main>        
                 <el-row :gutter="20">
-                    <el-col :span="8">
+                    <el-col xs="12" :sm="8">
                         <el-radio-group v-model="selectedSession" style="margin-bottom: 20px">
                             <el-radio-button label="全部"></el-radio-button>
                             <el-radio-button label="台中場"></el-radio-button>
                             <el-radio-button label="彰化場"></el-radio-button>
                         </el-radio-group>    
                     </el-col>
-                    <el-col :span="16">
-                        <div class="el-input el-input--prefix">
+                    <el-col xs="12" :sm="16">
+                        <div class="el-input el-input--prefix" style="margin-bottom: 20px">
                             <input 
                                 type="text" 
                                 v-model="strSearch"
