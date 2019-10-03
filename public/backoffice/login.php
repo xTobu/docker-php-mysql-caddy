@@ -72,7 +72,7 @@ if (isset($_SESSION["errorMessage"])) {
                         >
                     </el-form-item>
                     <el-alert
-                        v-show="<?php echo $msgErr ?: "false"; ?>"
+                        v-if="<?php echo !empty($msgErr) ?: "false"; ?>"
                         title="<?php echo $msgErr; ?>"
                         type="error"
                         show-icon>
