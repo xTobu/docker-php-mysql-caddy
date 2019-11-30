@@ -15,6 +15,8 @@ docker-compose rm <service>
 ## Api Doc
 #### [ Base URL: localhost:9000 ]
 
+－
+
 ### /api/getAttendees.php
 > 取得所有參加者
 
@@ -42,6 +44,8 @@ docker-compose rm <service>
     ]
 }
 ```
+
+－
 
 ### /api/postAttendee.php
 > 新增參加者
@@ -74,6 +78,15 @@ docker-compose rm <service>
     "data": "Bad Request: Incomplete Request"
 }
 ```
+
+##### 400 場次錯誤（關閉或下線）
+```js
+{
+    "status": 400,
+    "data": "Bad Request: Error Session"
+}
+```
+
 ##### 409 重複資料
 ```js
 {
@@ -86,5 +99,28 @@ docker-compose rm <service>
 {
     "status": 500,
     "data": <PDOException>
+}
+```
+
+－
+
+### /api/getSessions.php
+> 取得場次狀態
+#### Response
+##### 200 Success
+```js
+{
+    "status": 200,
+    "data": [
+        {
+            "pkid": 1,
+            "session": "總論壇",
+            "limit": null,
+            "status": 1, // 0: Off , 1: On
+            "deleted_at": null,
+            "updated_at": "2019-11-30 08:50:05",
+            "created_at": "2019-11-30 08:48:50"
+        }
+    ]
 }
 ```
