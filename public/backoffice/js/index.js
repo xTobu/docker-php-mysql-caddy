@@ -5,6 +5,18 @@ var Index = {
 		Index.instanceVue = new Vue({
 			el: '#app',
 			data: {
+				dialogSetting: false,
+				sessionData: [
+					{
+						pkid: 1,
+						created_at: '2019-11-29 21:47:05',
+						deleted_at: null,
+						limit: null,
+						session: '總論壇',
+						status: 1,
+						updated_at: null,
+					},
+				],
 				pageCurrent: 1,
 				pageSize: 10,
 				pageTotalCount: 100,
@@ -26,7 +38,7 @@ var Index = {
 					// 	updated_at: null,
 					// 	created_at: '2019-09-14 00:50:54',
 					// },
-				]
+				],
 			},
 			computed: {
 				computedTableData: function() {
@@ -63,20 +75,26 @@ var Index = {
 					} else {
 						return data;
 					}
-				}
+				},
 			},
 			created: function() {},
 			mounted: function() {
-				this.getTableDate();
+				this.getTableData();
+				this.getSessionData();
 			},
 			methods: {
 				logout: function() {
 					window.location = '/api/postLogout.php';
 				},
-				handleDownload: function(session) {
-					window.location = '/api/xlsxExport.php?session=' + Index.instanceVue.selectedSession;
+				handleSetting: function() {
+					this.getSessionData();
+					Index.instanceVue.dialogSetting = true;
 				},
-				getTableDate: function() {
+				handleDownload: function(session) {
+					window.location =
+						'/api/xlsxExport.php?session=' + Index.instanceVue.selectedSession;
+				},
+				getTableData: function() {
 					axios
 						.get('/api/getAttendees.php')
 						.then(function(res) {
@@ -89,15 +107,39 @@ var Index = {
 							console.log(err);
 						});
 				},
+				getSessionData: function() {
+					axios
+						.get('/api/getSessions.php')
+						.then(function(res) {
+							Index.instanceVue.sessionData = res.data.data;
+							console.log(Index.instanceVue.sessionData);
+						})
+						.catch(function(err) {
+							console.log(err);
+						});
+				},
 				handleSizeChange: function(val) {
 					Index.instanceVue.pageSize = val;
 				},
 				updateSearch: function(value) {
 					this.strSearch = value;
-				}
-			}
+				},
+				changeSwitch: function(data) {
+					var fd = new FormData();
+					fd.append('pkid', data.pkid);
+					fd.append('status', data.status);
+					axios
+						.post('/api/postSessionUpdate.php', fd)
+						.then(function(res) {
+							console.log(res);
+						})
+						.catch(function(err) {
+							console.log(err);
+						});
+				},
+			},
 		});
-	}
+	},
 };
 
 window.onload = function() {

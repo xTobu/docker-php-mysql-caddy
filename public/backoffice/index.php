@@ -29,10 +29,30 @@ if (empty($_SESSION["su"])) {{
     <link href="https://unpkg.com/element-ui/lib/theme-chalk/index.css" rel="stylesheet" >
 
     <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
-    <link href="./style/index.css?<?php echo rand(0,1000);?>" rel="stylesheet" type="text/css" />
+    <link href="./style/index.css?<?php echo rand(0, 1000); ?>" rel="stylesheet" type="text/css" />
 </head>
 <body>
     <div id="app" style="display: none;" v-show="true">
+        <el-dialog title="場次設定" center width="30%" :visible.sync="dialogSetting">
+            <el-table :data="sessionData">
+                <el-table-column property="session" label="場次" width="200"></el-table-column>
+                <el-table-column label="狀態" >
+                    <template slot-scope="scope">
+                        <el-switch
+                            v-model="scope.row.status"
+                            active-color="#13ce66"
+                            inactive-color="#ff4949"
+                            :active-value="1"
+                            :inactive-value="0"
+                            active-text="開啟"
+                            inactive-text="關閉"
+                            @change="changeSwitch(scope.row)"
+                            >
+                        </el-switch>
+                    </template>
+                </el-table-column>
+            </el-table>
+        </el-dialog>
         <el-container>
             <el-header>
                 <el-row :gutter="20">
@@ -42,6 +62,7 @@ if (empty($_SESSION["su"])) {{
                     <el-col :span="10" style="">
                         <el-button type="danger" icon="fas fa-sign-out-alt" circle @click.prevent="logout"></el-button>
                         <el-button type="success" icon="el-icon-download" circle @click.prevent="handleDownload"></el-button>
+                        <el-button type="info" icon="el-icon-s-tools" circle  @click.prevent="handleSetting"></el-button>
                         <!-- <el-dropdown trigger="click" @command="handleDownload">
                             <el-button type="success" icon="el-icon-download" circle ></el-button>
                             <el-dropdown-menu slot="dropdown">
@@ -52,37 +73,37 @@ if (empty($_SESSION["su"])) {{
 
                     </el-col>
                     <el-col :span="12">
-                        
+
                     </el-col>
                 </el-row>
 
             </el-header>
-            
-            <el-main>        
+
+            <el-main>
                 <el-row :gutter="20">
                     <el-col :xs="24" :sm="8">
                         <el-radio-group v-model="selectedSession" style="margin-bottom: 20px">
                             <el-radio-button label="全部"></el-radio-button>
                             <el-radio-button label="台中場"></el-radio-button>
                             <el-radio-button label="彰化場"></el-radio-button>
-                        </el-radio-group>    
+                        </el-radio-group>
                     </el-col>
                     <el-col :xs="24" :sm="16">
                         <div class="el-input el-input--prefix" style="margin-bottom: 20px">
-                            <input 
-                                type="text" 
+                            <input
+                                type="text"
                                 v-model="strSearch"
-                                autocomplete="off" 
-                                placeholder="全文檢索" 
+                                autocomplete="off"
+                                placeholder="全文檢索"
                                 class="el-input__inner" >
-                               
+
                             <span class="el-input__prefix">
                                 <i class="el-input__icon el-icon-search">
                                 </i>
                             </span>
                         </div>
                     </el-col>
-                </el-row>     
+                </el-row>
 
                 <el-card class="box-card">
                     <el-tag effect="plain" style="font-size: 16px;">
@@ -136,7 +157,7 @@ if (empty($_SESSION["su"])) {{
                             prop="created_at"
                             label="報名時間">
                         </el-table-column>
-                        
+
                     </el-table>
                     <el-pagination
                         :current-page.sync="pageCurrent"
@@ -153,5 +174,5 @@ if (empty($_SESSION["su"])) {{
 
     </div>
 </body>
-<script src="./js/index.js?<?php echo rand(0,1000);?>"></script>
+<script src="./js/index.js?<?php echo rand(0, 1000); ?>"></script>
 </html>

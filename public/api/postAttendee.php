@@ -22,20 +22,32 @@ try {
         exit();
     }
 
+    // 檢查重複資料
     $query = "SELECT COUNT(*) FROM `attendee` WHERE `event` = :event AND `session` = :session AND `email` = :email";
     $statement = $conn->prepare($query);
     $statement->bindParam(':event', $event);
     $statement->bindParam(':session', $session);
     $statement->bindParam(':email', $email);
     $statement->execute();
-    
-    // 檢查重複資料
+
     $count = $statement->fetchColumn();
-    if($count > 0){
+    if ($count > 0) {
         $handler->response(409, "Conflict: Duplicate Data");
         exit();
     }
-    
+
+    // 檢查場次可否報名重複資料
+    $query = "SELECT COUNT(*) FROM `session` WHERE `status` = 1 AND `session` = :session";
+    $statement = $conn->prepare($query);
+    $statement->bindParam(':session', $session);
+    $statement->execute();
+
+    $count = $statement->fetchColumn();
+    if ($count == 0) {
+        $handler->response(400, "Bad Request: Error Session");
+        exit();
+    }
+
     $query = "INSERT INTO `attendee` (`event`, `session`, `job`, `dept`, `rocid`, `name`, `phone`, `email`) VALUES (:event, :session, :job, :dept, :rocid, :name, :phone, :email)";
     $statement = $conn->prepare($query);
 
