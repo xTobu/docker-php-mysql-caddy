@@ -24,5 +24,6 @@ create table if not exists `session`
 -- Records of session
 -- ----------------------------
 BEGIN;
-INSERT INTO `session` (`session`) VALUES ("總論壇");
+INSERT INTO `session` (`session`) VALUES ("總論壇(葷)");
+INSERT INTO `session` (`session`) VALUES ("總論壇(素)");
 COMMIT;

@@ -36,7 +36,7 @@ try {
         exit();
     }
 
-    // 檢查場次可否報名重複資料
+    // 檢查場次可否報名
     $query = "SELECT COUNT(*) FROM `session` WHERE `status` = 1 AND `session` = :session";
     $statement = $conn->prepare($query);
     $statement->bindParam(':session', $session);
