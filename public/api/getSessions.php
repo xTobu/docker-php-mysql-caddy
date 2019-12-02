@@ -8,7 +8,7 @@ try{
 
     if($conn){
 
-        $query = "SELECT * FROM `session` WHERE `status` != -1 ORDER BY `pkid` DESC";
+        $query = "SELECT * FROM `session` WHERE `status` != -1 ORDER BY `pkid` ASC";
         $statement = $conn->prepare($query);
         $statement->execute();
         $results = $statement->fetchAll(PDO::FETCH_ASSOC);
